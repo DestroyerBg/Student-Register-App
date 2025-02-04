@@ -6,6 +6,7 @@ on:
 
 jobs:
   build:
+    name: Buld and test
     runs-on: windows-latest
 
     strategy:
