@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    name: Buld and test
+    name: Build and test
     runs-on: windows-latest
 
     strategy:
@@ -30,5 +30,15 @@ jobs:
 
       - name: Start App
         run: npm start &
-
+  
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v3
+      - uses: JorgeLNJunior/render-deploy@v1.4.4
+        with:
+          service_id: ${{ secrets.SERVICE_ID }}
+          api_key: ${{ secrets.API_TOKEN }}
+          wait_deploy: true       
     
